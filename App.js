@@ -6,16 +6,24 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 export default function App() {
-  const [task, setTask] = useState(["Marcos", "Rodrigo", "Alessandra"]);
+  const [task, setTask] = useState(["Marcos", "Rodrigo", "Alessandra",]);
   const [newTask, setNewTaks] = useState("");
 
   return (
     <>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={0}
+      behavior="padding"
+      style={{ flex: 1}}
+      enabled={Platform.OS === 'ios'}
+      >
       <View style={styles.container}>
         <View style={styles.Body}>
           <FlatList
@@ -25,7 +33,7 @@ export default function App() {
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
               <View style={styles.ContainerView}>
-                <Text>{item}</Text>
+                <Text style={styles.Texto}>{item}</Text>
                 <TouchableOpacity>
                   <MaterialIcons
                     name="delete-forever"
@@ -50,6 +58,7 @@ export default function App() {
           </TouchableOpacity>
         </View>
       </View>
+      </KeyboardAvoidingView>
     </>
   );
 }
@@ -110,5 +119,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between", 
     borderWidth: 1,
     borderColor: "#eee",
+  },
+  Texto: {
+    fontSize: 14,
+    color: "#333",
+    fontWeight: "bold",
+    marginTop: 4,
+    textAlign: "center"
   }
 });
