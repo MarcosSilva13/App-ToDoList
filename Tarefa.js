@@ -19,16 +19,21 @@ export default function Tarefa({ navigation }) {
   const [task, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
 
+
+  //função que adiciona nova tarefa
   async function addTask() {
     if (newTask == "") {
-      //Alert.alert("Atenção", "Não pode adicionar tarefa vazia!");
+      Alert.alert("Atenção", "Não pode adicionar tarefa vazia!");
+      alert("Não pode adicionar tarefa vazia!");
       return;
     }
 
+    //pesquisa se tem uma tarefa igual
     const search = task.filter((task) => task === newTask);
 
     if (search.length != 0) {
       Alert.alert("Atenção", "Nome da tarefa repetido!");
+      alert("Tarefa repetida!");
       return;
     }
 
@@ -38,6 +43,7 @@ export default function Tarefa({ navigation }) {
     Keyboard.dismiss();
   }
 
+  //função que remove uma tarefa
   async function removeTask(item) {
     Alert.alert(
       "Deletar tarefa",
@@ -59,7 +65,8 @@ export default function Tarefa({ navigation }) {
     );
   }
 
-  useEffect(() => {
+  // carrega os dados que foram salvos 
+ /* useEffect(() => {
     async function loadData() {
       const task = await AsyncStorage.getItem("task");
 
@@ -69,8 +76,9 @@ export default function Tarefa({ navigation }) {
     }
 
     loadData();
-  }, []);
+  }, []);*/
 
+  // salva os dados localmente
   useEffect(() => {
     async function saveData() {
       AsyncStorage.setItem("task", JSON.stringify(task));
@@ -83,24 +91,31 @@ export default function Tarefa({ navigation }) {
     <>
       <KeyboardAvoidingView
         keyboardVerticalOffset={0}
-        behavior="padding"
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
-        enabled={Platform.OS === "ios"}
+        //enabled={Platform.OS === "ios"}
       >
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text style={styles.Title}> Tarefas</Text>
+            <Text style={styles.title}> Tarefas</Text>
+            <TouchableOpacity > 
+                    <MaterialIcons
+                      name="delete"
+                      size={25}
+                      color="#f64c75"
+                    />
+                  </TouchableOpacity>
           </View>
 
-          <View style={styles.Body}>
+          <View style={styles.body}>
             <FlatList
-              style={styles.FlatList}
+              style={styles.flatList}
               data={task}
               keyExtractor={(item) => item.toString()}
               showsVerticalScrollIndicator={false}
               renderItem={({ item }) => (
-                <View style={styles.ContainerView}>
-                  <Text style={styles.Texto}>{item}</Text>
+                <View style={styles.containerView}>
+                  <Text style={styles.text}>{item}</Text>
                   <TouchableOpacity onPress={() => removeTask(item)}>
                     <MaterialIcons
                       name="delete-forever"
@@ -112,9 +127,9 @@ export default function Tarefa({ navigation }) {
               )}
             />
           </View>
-          <View style={styles.Form}>
+          <View style={styles.form}>
             <TextInput
-              style={styles.Input}
+              style={styles.input}
               placeholderTextColor="#999"
               autoCorrect={true}
               placeholder="Adicione uma tarefa"
@@ -122,7 +137,7 @@ export default function Tarefa({ navigation }) {
               onChangeText={(text) => setNewTask(text)}
               value={newTask}
             />
-            <TouchableOpacity style={styles.Button} onPress={() => addTask()}>
+            <TouchableOpacity style={styles.button} onPress={() => addTask()}>
               <Ionicons name="ios-add" size={25} color="#fff" />
             </TouchableOpacity>
           </View>
@@ -146,15 +161,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  Title: {
+  title: {
     fontSize: 20,
     fontWeight: "bold",
     color: "#000",
   },
-  Body: {
+  body: {
     flex: 1,
   },
-  Form: {
+  form: {
     padding: 0,
     height: 60,
     justifyContent: "center",
@@ -164,7 +179,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: "#000",
   },
-  Input: {
+  input: {
     flex: 1,
     height: 40,
     backgroundColor: "#eee",
@@ -174,7 +189,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#eee",
   },
-  Button: {
+  button: {
     height: 40,
     width: 40,
     justifyContent: "center",
@@ -183,11 +198,11 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginLeft: 10,
   },
-  FlatList: {
+  flatList: {
     flex: 1,
     marginTop: 5,
   },
-  ContainerView: {
+  containerView: {
     marginBottom: 15,
     padding: 15,
     borderRadius: 4,
@@ -200,7 +215,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#eee",
   },
-  Texto: {
+  text: {
     fontSize: 14,
     color: "#333",
     fontWeight: "bold",
