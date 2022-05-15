@@ -9,10 +9,11 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
-  Alert
+  Alert,
 } from "react-native";
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   const [task, setTask] = useState([]);
@@ -38,6 +39,50 @@ export default function App() {
     Keyboard.dismiss();
   }
 
+  async function removeTask(item){
+    Alert.alert(
+      "Deletar tarefa",
+      "Tem certeza que deseja deletar essa tarefa ?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {
+            return;
+          },
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => setTask(task.filter(tasks => tasks !== item))
+        }
+      ],
+      {cancelable: false}
+    );    
+  }
+
+  useEffect(() => {
+    async function loadData(){
+      const task = await AsyncStorage.getItem("task");
+
+      if(task){
+        setTask(JSON.parse(task));
+      }
+    }
+
+    loadData();
+
+  },[]);
+
+  useEffect(() => {
+    async function saveData(){
+      AsyncStorage.setItem("task", JSON.stringify(task));
+    }
+    
+    saveData();
+
+  }, [task]);
+
+
 
   return (
     <>
@@ -57,7 +102,7 @@ export default function App() {
             renderItem={({ item }) => (
               <View style={styles.ContainerView}>
                 <Text style={styles.Texto}>{item}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => removeTask(item)}>
                   <MaterialIcons
                     name="delete-forever"
                     size={25}
