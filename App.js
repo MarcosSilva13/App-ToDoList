@@ -7,14 +7,23 @@ import {
   TouchableOpacity,
   FlatList,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  Keyboard
 } from "react-native";
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 export default function App() {
   const [task, setTask] = useState(["Marcos", "Rodrigo", "Alessandra",]);
-  const [newTask, setNewTaks] = useState("");
+  const [newTask, setNewTask] = useState("");
+
+  async function addTask(){
+    setTask([... task, newTask]);
+    setNewTask("");
+
+    Keyboard.dismiss();
+  }
+
 
   return (
     <>
@@ -52,8 +61,11 @@ export default function App() {
             autoCorrect={true}
             placeholder="Adicione uma tarefa"
             maxLength={25}
+            onChangeText={text => setNewTask(text)}
+            value={newTask}
           />
-          <TouchableOpacity style={styles.Button}>
+          <TouchableOpacity style={styles.Button} onPress={() => addTask()}  
+          >
             <Ionicons name="ios-add" size={25} color="#fff" />
           </TouchableOpacity>
         </View>
