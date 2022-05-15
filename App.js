@@ -8,16 +8,30 @@ import {
   FlatList,
   KeyboardAvoidingView,
   Platform,
-  Keyboard
+  Keyboard,
+  Alert
 } from "react-native";
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 export default function App() {
-  const [task, setTask] = useState(["Marcos", "Rodrigo", "Alessandra",]);
+  const [task, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
 
   async function addTask(){
+    if(newTask == ''){
+      //Alert.alert("Atenção", "Não pode adicionar tarefa vazia!");
+      return;
+    }
+    
+    const search = task.filter(task => task === newTask);
+    
+    if(search.length != 0){
+      Alert.alert("Atenção", "Nome da tarefa repetido!");
+      return;
+    }
+
+
     setTask([... task, newTask]);
     setNewTask("");
 
@@ -60,7 +74,7 @@ export default function App() {
             placeholderTextColor="#999"
             autoCorrect={true}
             placeholder="Adicione uma tarefa"
-            maxLength={25}
+            maxLength={25} //aumentar isso depois talvez
             onChangeText={text => setNewTask(text)}
             value={newTask}
           />
