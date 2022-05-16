@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : ""}
       style={style.container}
     >
       <Text style={style.title}>Tarefas</Text>
