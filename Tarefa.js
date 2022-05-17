@@ -45,6 +45,25 @@ export default function Tarefa({ navigation }) {
 
   async function removeAllTasks() {
     setTask([]);
+
+  /*  Alert.alert(
+      "Confirmação",
+      "Tem certeza que deseja deletar todas as tarefas ?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {
+            return;
+          },
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => setTask([]),
+        },
+      ],
+      { cancelable: false }
+    ); */
   }
 
   //função que remove uma tarefa
@@ -73,7 +92,7 @@ export default function Tarefa({ navigation }) {
   }
 
   // carrega os dados que foram salvos 
- /* useEffect(() => {
+  useEffect(() => {
     async function loadData() {
       const task = await AsyncStorage.getItem("task");
 
@@ -83,7 +102,7 @@ export default function Tarefa({ navigation }) {
     }
 
     loadData();
-  }, []);*/
+  }, []);
 
   // salva os dados localmente
   useEffect(() => {

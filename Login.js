@@ -91,9 +91,13 @@ export default function Login({ navigation }) {
           style={style.linkSubscribe}
           //onPress={() => navigation.navigate("Cadastro")}
         >
-          <Text /> Cadastre-se...
+          <Text/> Cadastre-se...
+
         </Text>
       </Text>
+
+      <Text style={style.about}>Sobre</Text>
+
       <View style={{ height: 100 }} />
 
       <TouchableOpacity
@@ -192,4 +196,9 @@ const style = StyleSheet.create({
     margin: 10,
     //marginLeft: 10
   },
+
+  about: {
+    marginTop: 10,
+    color: "#D96800",
+  }
 });
