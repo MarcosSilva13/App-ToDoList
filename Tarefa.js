@@ -43,9 +43,16 @@ export default function Tarefa({ navigation }) {
     Keyboard.dismiss();
   }
 
+  async function removeAllTasks() {
+    setTask([]);
+  }
+
   //função que remove uma tarefa
   async function removeTask(item) {
-    Alert.alert(
+    
+    setTask(task.filter((tasks) => tasks !== item));
+
+    /*Alert.alert(
       "Deletar tarefa",
       "Tem certeza que deseja deletar essa tarefa ?",
       [
@@ -62,7 +69,7 @@ export default function Tarefa({ navigation }) {
         },
       ],
       { cancelable: false }
-    );
+    );*/
   }
 
   // carrega os dados que foram salvos 
@@ -98,7 +105,7 @@ export default function Tarefa({ navigation }) {
         <View style={styles.container}>
           <View style={styles.header}>
             <Text style={styles.title}> Tarefas</Text>
-            <TouchableOpacity > 
+            <TouchableOpacity onPress={() => removeAllTasks()}> 
                     <MaterialIcons
                       name="delete"
                       size={25}
