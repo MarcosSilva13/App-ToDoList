@@ -117,7 +117,7 @@ export default function Tarefa({ navigation }) {
     <>
       <KeyboardAvoidingView
         keyboardVerticalOffset={0}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === "ios" ? "padding" : ""}
         style={{ flex: 1 }}
         //enabled={Platform.OS === "ios"}
       >
