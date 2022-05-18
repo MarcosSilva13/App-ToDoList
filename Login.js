@@ -98,7 +98,7 @@ export default function Login({ navigation }) {
 
         <TouchableOpacity
           style={style.buttonAbout}
-          onPress={() => navigation.navigate("Sobre")}
+          //onPress={() => navigation.navigate("Sobre")}
         >
           <MaterialCommunityIcons 
             name="information-variant"
