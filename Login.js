@@ -98,7 +98,7 @@ export default function Login({ navigation }) {
 
         <TouchableOpacity
           style={style.buttonAbout}
-          //onPress={() => navigation.navigate("Sobre")}
+          onPress={() => navigation.navigate("Sobre")}
         >
           <MaterialCommunityIcons 
             name="information-variant"
@@ -107,7 +107,7 @@ export default function Login({ navigation }) {
           />
         </TouchableOpacity>
 
-      <Text style={style.about}>Sobre</Text>
+      <Text style={style.textAbout}>Sobre</Text>
 
       <View style={{ height: 100 }} />
 
@@ -217,8 +217,8 @@ const style = StyleSheet.create({
     borderRadius: 50,
     marginTop: 20
   },
-  about: {
-    marginTop: 10,
+  textAbout: {
+    marginTop: 1,
     color: "#D96800",
   }
 });
