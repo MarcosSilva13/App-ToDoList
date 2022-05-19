@@ -14,11 +14,44 @@ import {
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import database from "./config/firebaseconfig.js";
 
 export default function Tarefa({ navigation }) {
   const [task, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
 
+    function deleteTask(id){
+      Alert.alert(
+        "Deletar tarefa",
+        "Tem certeza que deseja deletar essa tarefa ?",
+        [
+          {
+            text: "Cancel",
+            onPress: () => {
+              return;
+            },
+            style: "cancel",
+          },
+          {
+            text: "OK",
+            onPress: () => database.collection("Tarefas").doc(id).delete(),
+          },
+        ],
+        { cancelable: false }
+      ); 
+      
+        //removeTask(id)
+    }
+
+    useEffect(() => {
+        database.collection("Tarefas").onSnapshot((query) => {
+            const list = [];
+            query.forEach((doc) => {
+                list.push({...doc.data(), id: doc.id})
+            })
+            setTask(list);
+        })
+    }, []);
 
   //função que adiciona nova tarefa
   async function addTask() {
@@ -39,6 +72,13 @@ export default function Tarefa({ navigation }) {
 
     setTask([...task, newTask]);
     setNewTask("");
+
+    database.collection('Tarefas').add({
+      description: newTask,
+      status: false
+    })
+
+    //navigation.navigate("Task");
 
     Keyboard.dismiss();
   }
@@ -70,25 +110,7 @@ export default function Tarefa({ navigation }) {
   async function removeTask(item) {
     
     setTask(task.filter((tasks) => tasks !== item));
-
-    /*Alert.alert(
-      "Deletar tarefa",
-      "Tem certeza que deseja deletar essa tarefa ?",
-      [
-        {
-          text: "Cancel",
-          onPress: () => {
-            return;
-          },
-          style: "cancel",
-        },
-        {
-          text: "OK",
-          onPress: () => setTask(task.filter((tasks) => tasks !== item)),
-        },
-      ],
-      { cancelable: false }
-    );*/
+    
   }
 
   // carrega os dados que foram salvos 
@@ -136,13 +158,15 @@ export default function Tarefa({ navigation }) {
           <View style={styles.body}>
             <FlatList
               style={styles.flatList}
-              data={task}
-              keyExtractor={(item) => item.toString()}
               showsVerticalScrollIndicator={false}
-              renderItem={({ item }) => (
+              data={task}
+              //keyExtractor={(item) => item.toString()}
+              renderItem={({ item }) => {
+                return(
                 <View style={styles.containerView}>
-                  <Text style={styles.text}>{item}</Text>
-                  <TouchableOpacity onPress={() => removeTask(item)}>
+                  <Text style={styles.text}>{item.description}</Text>
+                
+                  <TouchableOpacity onPress={() => deleteTask(item.id)}>
                     <MaterialIcons
                       name="delete-forever"
                       size={25}
@@ -150,9 +174,11 @@ export default function Tarefa({ navigation }) {
                     />
                   </TouchableOpacity>
                 </View>
-              )}
+                )
+              }}
             />
           </View>
+
           <View style={styles.form}>
             <TextInput
               style={styles.input}
@@ -232,7 +258,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 15,
     borderRadius: 4,
-    backgroundColor: "#eee",
+    backgroundColor: "#bdbdbd",
 
     display: "flex",
     flexDirection: "row",

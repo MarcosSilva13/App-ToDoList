@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Tarefa from './Tarefa';
 import Login from './Login';
+import Tarefa from './Tarefa';
 
 const Stack = createNativeStackNavigator();
 
