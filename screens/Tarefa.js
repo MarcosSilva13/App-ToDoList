@@ -14,9 +14,9 @@ import {
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import database from "./config/firebaseconfig.js";
+import database from "../config/firebaseconfig.js";
 
-import storage from './storage';
+import storage from '../config/storage';
 
 export default function Tarefa({ navigation }) {
   const [task, setTask] = useState([]);
