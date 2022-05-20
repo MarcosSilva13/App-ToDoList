@@ -16,12 +16,15 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import database from "./config/firebaseconfig.js";
 
+import storage from './storage';
+
 export default function Tarefa({ navigation }) {
   const [task, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
 
     function deleteTask(id){
-      Alert.alert(
+      
+      /*Alert.alert(
         "Deletar tarefa",
         "Tem certeza que deseja deletar essa tarefa ?",
         [
@@ -38,11 +41,12 @@ export default function Tarefa({ navigation }) {
           },
         ],
         { cancelable: false }
-      ); 
-      
-        //removeTask(id)
+      ); */
+      database.collection("Tarefas").doc(id).delete();
+        
     }
 
+    //carrega dados do banco
     useEffect(() => {
         database.collection("Tarefas").onSnapshot((query) => {
             const list = [];
@@ -75,7 +79,6 @@ export default function Tarefa({ navigation }) {
 
     database.collection('Tarefas').add({
       description: newTask,
-      status: false
     })
 
     //navigation.navigate("Task");
@@ -108,7 +111,8 @@ export default function Tarefa({ navigation }) {
 
   //função que remove uma tarefa
   async function removeTask(item) {
-    
+    deleteTask(item.id);
+
     setTask(task.filter((tasks) => tasks !== item));
     
   }
@@ -116,10 +120,10 @@ export default function Tarefa({ navigation }) {
   // carrega os dados que foram salvos 
   useEffect(() => {
     async function loadData() {
-      const task = await AsyncStorage.getItem("task");
+      const tasks = await AsyncStorage.getItem("task");
 
-      if (task) {
-        setTask(JSON.parse(task));
+      if (tasks) {
+        setTask(JSON.parse(tasks));
       }
     }
 
@@ -134,6 +138,30 @@ export default function Tarefa({ navigation }) {
 
     saveData();
   }, [task]);
+
+  
+  /*useEffect(() => {
+    storage.save({
+      key: 'Tarefass',
+      data:  task,
+      expires: null
+    })
+    .catch(err => {
+      alert("Não salvou!");
+    });
+  },[]);
+  
+  useEffect(() => {
+    storage.load({
+      key: 'Tarefass'
+    })
+    .then(obj => {
+      setTask(obj);
+    })
+    .catch(err => {
+        alert("Não recuperou nada viu!");
+    });
+  },[]);*/
 
   return (
     <>
@@ -160,13 +188,12 @@ export default function Tarefa({ navigation }) {
               style={styles.flatList}
               showsVerticalScrollIndicator={false}
               data={task}
-              //keyExtractor={(item) => item.toString()}
               renderItem={({ item }) => {
                 return(
                 <View style={styles.containerView}>
                   <Text style={styles.text}>{item.description}</Text>
                 
-                  <TouchableOpacity onPress={() => deleteTask(item.id)}>
+                  <TouchableOpacity onPress={() => removeTask(item)}>
                     <MaterialIcons
                       name="delete-forever"
                       size={25}
