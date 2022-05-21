@@ -5,6 +5,7 @@ import Login from './screens/Login';
 import Tarefa from './screens/Tarefa';
 import Sobre from './screens/Sobre';
 import Cadastro from './screens/Cadastro';
+import Editar from './screens/Editar';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,11 @@ export default function App() {
         <Stack.Screen
           name="Cadastro"
           component={Cadastro}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Editar"
+          component={Editar}
           options={{headerShown: false}}
         />
         <Stack.Screen

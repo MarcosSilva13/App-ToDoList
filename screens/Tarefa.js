@@ -199,7 +199,16 @@ export default function Tarefa({ navigation, route }) {
               renderItem={({ item }) => {
                 return(
                 <View style={styles.containerView}>
-                  <Text style={styles.text}>{item.description}</Text>
+                  <Text style={styles.text}
+                    onPress={() => { navigation.navigate("Editar", {
+                      id: item.id,
+                      description: item.description,
+                      idUser: route.params.idUser
+                    })
+                   }}
+                  >
+                    {item.description}
+                  </Text>
                 
                   <TouchableOpacity 
                     onPress={() => removeTask(item)}>
@@ -212,6 +221,7 @@ export default function Tarefa({ navigation, route }) {
                 </View>
                 )
               }}
+              keyExtractor={(item) => item.id}
             />
           </View>
 
