@@ -19,12 +19,15 @@ export default function Cadastro({ navigation }) {
 
   const register = () => {
     firebase.auth().createUserWithEmailAndPassword(email, senha)
-      .then((userCredential) => {
+    .then((userCredential) => {
 
         let user = userCredential.user;
-        
+
         navigation.navigate("Tarefa", {idUser: user.uid})
         
+        setEmail("");
+        setSenha("");
+
       })
       .catch((error) => {
         setErrorRegister(true);

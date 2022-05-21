@@ -19,17 +19,17 @@ export default function Login({ navigation }) {
   const [senha, setSenha] = useState("");
   const [errorLogin, setErrorLogin] = useState("");
 
-  const emailTeste = "marcos@gmail.com";
-  const senhaTeste = "123456789";
-
   const loginFirebase = () => {
     firebase.auth().signInWithEmailAndPassword(email, senha)
     .then((userCredential) => {
 
       let user = userCredential.user;
       
-      navigation.navigate("Tarefa", {idUser: user.uid})
-      //setErrorLogin(false)
+      navigation.navigate("Tarefa", {idUser: user.uid, emailUser: user.email})
+
+      setEmail("");
+      setSenha("");
+
     })
     .catch((error) => {
       setErrorLogin(true)
@@ -45,20 +45,6 @@ export default function Login({ navigation }) {
       }
     });
   }, [])
-
-  function checkLogin() {
-    if (email !== emailTeste) {
-      Alert.alert("Atenção", "Email incorreto!"); // no android
-
-      alert("Email incorreto!"); // na web
-    } else if (senha !== senhaTeste) {
-      Alert.alert("Atenção", "Senha incorreta!"); // no android
-
-      alert("Senha incorreta!"); // na web
-    } else {
-      navigation.navigate("Tarefa");
-    }
-  }
 
   return (
     <KeyboardAvoidingView
