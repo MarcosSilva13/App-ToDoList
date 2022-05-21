@@ -25,9 +25,8 @@ export default function Tarefa({ navigation, route }) {
 
   const user = firebase.auth().currentUser;
   const email = user.email;
-  const displayName = user.displayName;
 
-    if (user !== null) {
+    /*if (user !== null) {
       // The user object has basic properties such as display name, email, etc.
       const displayName = user.displayName;
       const email = user.email;
@@ -38,8 +37,7 @@ export default function Tarefa({ navigation, route }) {
       // this value to authenticate with your backend server, if
       // you have one. Use User.getIdToken() instead.
       const uid = user.uid;
-}
-
+}*/
 
     function logout(){
       firebase.auth().signOut().then(() => {
@@ -49,29 +47,6 @@ export default function Tarefa({ navigation, route }) {
       });
     }
   
-    function deleteTask(id){
-      /*Alert.alert(
-        "Deletar tarefa",
-        "Tem certeza que deseja deletar essa tarefa ?",
-        [
-          {
-            text: "Cancel",
-            onPress: () => {
-              return;
-            },
-            style: "cancel",
-          },
-          {
-            text: "OK",
-            onPress: () => database.collection("Tarefas").doc(id).delete(),
-          },
-        ],
-        { cancelable: false }
-      ); */
-      database.collection(route.params.idUser).doc(id).delete();
-        
-    }
-
     //carrega dados do banco
     useEffect(() => {
         database.collection(route.params.idUser).onSnapshot((query) => {
@@ -107,17 +82,19 @@ export default function Tarefa({ navigation, route }) {
       description: newTask,
     })
 
-    //navigation.navigate("Task");
-
     Keyboard.dismiss();
   }
 
-  async function removeAllTasks() {
-    setTask([]);
+  function deleteTask(id){
+    database.collection(route.params.idUser).doc(id).delete()
+  }
 
-  /*  Alert.alert(
-      "Confirmação",
-      "Tem certeza que deseja deletar todas as tarefas ?",
+  //função que remove uma tarefa
+  async function removeTask(item) {
+    const op = 0;
+    Alert.alert(
+      "Deletar tarefa",
+      "Tem certeza que deseja deletar essa tarefa ?",
       [
         {
           text: "Cancel",
@@ -128,19 +105,17 @@ export default function Tarefa({ navigation, route }) {
         },
         {
           text: "OK",
-          onPress: () => setTask([]),
+          op : 1,
+          onPress: () => deleteTask(item.id),
+          
         },
       ],
       { cancelable: false }
-    ); */
-  }
+    ); 
 
-  //função que remove uma tarefa
-  async function removeTask(item) {
-    deleteTask(item.id);
-
-    setTask(task.filter((tasks) => tasks !== item));
-    
+    if(op === 1){
+      setTask(task.filter((tasks) => tasks !== item));
+    }
   }
 
   // carrega os dados que foram salvos 
@@ -198,7 +173,10 @@ export default function Tarefa({ navigation, route }) {
         //enabled={Platform.OS === "ios"}
       >
         <View style={styles.container}>
-          <Text>Logado como: {email} {displayName}</Text>
+          <Text style={styles.titleLog}>Logado como:
+            <Text style={styles.titleUser}> {email}</Text>
+          </Text>
+          
           <View style={styles.header}>
             <Text style={styles.title}> Tarefas</Text>
               <TouchableOpacity 
@@ -208,7 +186,7 @@ export default function Tarefa({ navigation, route }) {
                   <MaterialIcons
                     name="logout"
                     size={25}
-                    color="#f64c75"
+                    color="#D95800"
                   />
               </TouchableOpacity>
           </View>
@@ -223,11 +201,12 @@ export default function Tarefa({ navigation, route }) {
                 <View style={styles.containerView}>
                   <Text style={styles.text}>{item.description}</Text>
                 
-                  <TouchableOpacity onPress={() => removeTask(item)}>
+                  <TouchableOpacity 
+                    onPress={() => removeTask(item)}>
                     <MaterialIcons
                       name="delete-forever"
                       size={25}
-                      color="#f64c75"
+                      color="#D95800"
                     />
                   </TouchableOpacity>
                 </View>
@@ -242,12 +221,12 @@ export default function Tarefa({ navigation, route }) {
               placeholderTextColor="#999"
               autoCorrect={true}
               placeholder="Adicione uma tarefa"
-              maxLength={25} //aumentar isso depois talvez
+              maxLength={35} //aumentar isso depois talvez
               onChangeText={(text) => setNewTask(text)}
               value={newTask}
             />
             <TouchableOpacity 
-              style={styles.button} 
+              style={styles.buttonAdd} 
               onPress={() => addTask()}
             >
               <Ionicons name="ios-add" size={25} color="#fff" />
@@ -267,13 +246,24 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     marginTop: 10,
   },
+  titleLog: {
+    marginTop: 15,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  titleUser: {
+    color: "#D95800",
+    fontWeight: "bold",
+    fontSize: 16
+  },
   header: {
     padding: 10,
-    marginTop: 10,
+    marginTop: 15,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderWidth: 2
+    borderBottomWidth: 1,
+    borderBottomColor: "#000",
   },
   title: {
     fontSize: 20,
@@ -284,7 +274,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   form: {
-    padding: 0,
     height: 60,
     justifyContent: "center",
     alignSelf: "stretch",
@@ -303,24 +292,24 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#eee",
   },
-  button: {
+  buttonAdd: {
     height: 40,
     width: 40,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#1c6cce",
+    backgroundColor: "#D95800",
     borderRadius: 4,
     marginLeft: 10,
   },
   flatList: {
     flex: 1,
-    marginTop: 5,
+    marginTop: 8,
   },
   containerView: {
     marginBottom: 15,
-    padding: 15,
+    padding: 20,
     borderRadius: 4,
-    backgroundColor: "#bdbdbd",
+    backgroundColor: "#eee",
 
     display: "flex",
     flexDirection: "row",
@@ -330,7 +319,7 @@ const styles = StyleSheet.create({
     borderColor: "#eee",
   },
   text: {
-    fontSize: 14,
+    fontSize: 16,
     color: "#333",
     fontWeight: "bold",
     marginTop: 4,
