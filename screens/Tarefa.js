@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingHorizontal: 20,
+    paddingHorizontal: 8,
     paddingVertical: 20,
     marginTop: 10,
   },
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   header: {
-    padding: 10,
+    padding: 5,
     marginTop: 15,
     flexDirection: "row",
     alignItems: "center",
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
   },
   containerView: {
     marginBottom: 15,
-    padding: 20,
+    padding: 10,
     borderRadius: 4,
     backgroundColor: "#eee",
 
