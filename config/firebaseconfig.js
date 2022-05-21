@@ -1,17 +1,18 @@
 import firebase from "firebase";
 import "firebase/storage";
 
-var firebaseConfig = {
-    apiKey: "AIzaSyAc_2oUWInbt6nRIFtd5XZBk46lXEHu2Ko",
-    authDomain: "apptarefa-38a0a.firebaseapp.com",
-    projectId: "apptarefa-38a0a",
-    storageBucket: "apptarefa-38a0a.appspot.com",
-    messagingSenderId: "729654935129",
-    appId: "1:729654935129:web:ea231d2ab3c58f3c857b48"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyBpX2xLmlG3TN_DFEepCarqjByBdRS3c4c",
+  authDomain: "authentication-a9734.firebaseapp.com",
+  projectId: "authentication-a9734",
+  storageBucket: "authentication-a9734.appspot.com",
+  messagingSenderId: "610788136360",
+  appId: "1:610788136360:web:042f6d791043375d41f99d"
+};
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const database = firebase.firestore();
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
   
-  export default database;
+export default firebase;
+
+  

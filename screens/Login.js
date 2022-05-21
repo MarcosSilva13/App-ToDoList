@@ -12,6 +12,8 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 
+import firebase from "../config/firebaseconfig.js";
+
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -19,6 +21,23 @@ export default function Login({ navigation }) {
 
   const emailTeste = "marcos@gmail.com";
   const senhaTeste = "123456789";
+
+  const loginFirebase = () => {
+    firebase.auth().signInWithEmailAndPassword(email, senha)
+    .then((userCredential) => {
+      
+      let user = userCredential.user;
+      
+      navigation.navigate("Tarefa", {idUser: user.uid})
+      //setErrorLogin(false)
+    })
+    .catch((error) => {
+      setErrorLogin(true)
+      let errorcode = error.code;
+      let errorMessage = error.message;
+    });
+  }
+
 
   function checkLogin() {
     if (email !== emailTeste) {
@@ -79,7 +98,7 @@ export default function Login({ navigation }) {
       ) : (
         <TouchableOpacity
           style={style.buttonLogin}
-          onPress={() => checkLogin()}
+          onPress={() => loginFirebase()}
         >
           <Text style={style.textButtonLogin}>Login</Text>
         </TouchableOpacity>
@@ -89,7 +108,7 @@ export default function Login({ navigation }) {
         Ainda não tem uma conta ?
         <Text
           style={style.linkSubscribe}
-          //onPress={() => navigation.navigate("Cadastro")}
+          onPress={() => navigation.navigate("Cadastro")}
         >
           <Text/> Cadastre-se...
 

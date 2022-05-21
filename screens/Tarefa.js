@@ -14,11 +14,12 @@ import {
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import database from "../config/firebaseconfig.js";
+import firebase from "../config/firebaseconfig.js";
 
 import storage from '../config/storage';
 
 export default function Tarefa({ navigation }) {
+  const database = firebase.firestore();
   const [task, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
 
