@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import firebase from "../config/firebaseconfig.js";
 
@@ -25,7 +25,7 @@ export default function Login({ navigation }) {
   const loginFirebase = () => {
     firebase.auth().signInWithEmailAndPassword(email, senha)
     .then((userCredential) => {
-      
+
       let user = userCredential.user;
       
       navigation.navigate("Tarefa", {idUser: user.uid})
@@ -38,6 +38,13 @@ export default function Login({ navigation }) {
     });
   }
 
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function(user){
+      if(user) {
+        navigation.navigate("Tarefa", { idUser: user.uid })
+      }
+    });
+  }, [])
 
   function checkLogin() {
     if (email !== emailTeste) {
@@ -129,14 +136,6 @@ export default function Login({ navigation }) {
       <Text style={style.textAbout}>Sobre</Text>
 
       <View style={{ height: 100 }} />
-
-      <TouchableOpacity
-        style={style.Button}
-        onPress={() => navigation.navigate("Tarefa")}
-        //onPress={() => checkLogin()}
-      >
-        <Text style={style.Texto}>Logar</Text>
-      </TouchableOpacity>
     </KeyboardAvoidingView>
   );
 }

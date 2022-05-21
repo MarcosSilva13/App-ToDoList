@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer, useId } from "react";
 import {
   StyleSheet,
   Text,
@@ -18,13 +18,21 @@ import firebase from "../config/firebaseconfig.js";
 
 import storage from '../config/storage';
 
-export default function Tarefa({ navigation }) {
+export default function Tarefa({ navigation, route }) {
   const database = firebase.firestore();
   const [task, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
 
+    
+    function logout(){
+      firebase.auth().signOut().then(() => {
+        navigation.navigate("Login");
+      }).catch((error) => {
+
+      });
+    }
+  
     function deleteTask(id){
-      
       /*Alert.alert(
         "Deletar tarefa",
         "Tem certeza que deseja deletar essa tarefa ?",
@@ -43,13 +51,13 @@ export default function Tarefa({ navigation }) {
         ],
         { cancelable: false }
       ); */
-      database.collection("Tarefas").doc(id).delete();
+      database.collection(route.params.idUser).doc(id).delete();
         
     }
 
     //carrega dados do banco
     useEffect(() => {
-        database.collection("Tarefas").onSnapshot((query) => {
+        database.collection(route.params.idUser).onSnapshot((query) => {
             const list = [];
             query.forEach((doc) => {
                 list.push({...doc.data(), id: doc.id})
@@ -78,7 +86,7 @@ export default function Tarefa({ navigation }) {
     setTask([...task, newTask]);
     setNewTask("");
 
-    database.collection('Tarefas').add({
+    database.collection(route.params.idUser).add({
       description: newTask,
     })
 
@@ -173,15 +181,19 @@ export default function Tarefa({ navigation }) {
         //enabled={Platform.OS === "ios"}
       >
         <View style={styles.container}>
+          <Text>Logado como: </Text>
           <View style={styles.header}>
             <Text style={styles.title}> Tarefas</Text>
-            <TouchableOpacity onPress={() => removeAllTasks()}> 
-                    <MaterialIcons
-                      name="delete"
-                      size={25}
-                      color="#f64c75"
-                    />
-                  </TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.buttonLogout}
+                onPress={() => logout()}
+                > 
+                  <MaterialIcons
+                    name="logout"
+                    size={25}
+                    color="#f64c75"
+                  />
+              </TouchableOpacity>
           </View>
 
           <View style={styles.body}>
@@ -217,7 +229,10 @@ export default function Tarefa({ navigation }) {
               onChangeText={(text) => setNewTask(text)}
               value={newTask}
             />
-            <TouchableOpacity style={styles.button} onPress={() => addTask()}>
+            <TouchableOpacity 
+              style={styles.button} 
+              onPress={() => addTask()}
+            >
               <Ionicons name="ios-add" size={25} color="#fff" />
             </TouchableOpacity>
           </View>
@@ -233,13 +248,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: 20,
     paddingVertical: 20,
-    marginTop: 20,
+    marginTop: 10,
   },
   header: {
-    padding: 20,
+    padding: 10,
+    marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    borderWidth: 2
   },
   title: {
     fontSize: 20,
