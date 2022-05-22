@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useId } from "react";
+import React, { useState, useEffect, } from "react";
 import {
   StyleSheet,
   Text,
@@ -215,7 +215,7 @@ export default function Tarefa({ navigation, route }) {
                     <MaterialIcons
                       name="delete-forever"
                       size={25}
-                      color="#D95800"
+                      color="#000"
                     />
                   </TouchableOpacity>
                 </View>
@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 10,
     borderRadius: 4,
-    backgroundColor: "#eee",
+    backgroundColor: "#D98800",
 
     display: "flex",
     flexDirection: "row",

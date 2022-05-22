@@ -7,6 +7,7 @@ import {
     TouchableOpacity
 } from "react-native";
 
+import IconEditTask from "../Icons/IconEditTask.js";
 import firebase from "../config/firebaseconfig.js";
 
 export default function Editar({navigation, route}){
@@ -22,7 +23,7 @@ export default function Editar({navigation, route}){
     }
     return(
         <View style={styles.container}>
-          <Text style={styles.label}>Editar Tarefa</Text>
+          <Text style={styles.label}>Editar Tarefa<IconEditTask/></Text>
           <View style={styles.header}>
 
           </View>
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
       fontSize: 40,
       fontWeight: "bold",
       marginLeft: 0,
-      color: "#D95800",
+      color: "#D96800",
     },
     input:{
      width: "100%",

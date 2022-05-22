@@ -13,6 +13,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 
 import firebase from "../config/firebaseconfig.js";
+import IconTask from "../Icons/IconTask.js";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -51,7 +52,7 @@ export default function Login({ navigation }) {
       behavior={Platform.OS === "ios" ? "padding" : ""}
       style={style.container}
     >
-      <Text style={style.title}>Tarefas</Text>
+      <Text style={style.title}>Tarefas<IconTask/> </Text>
       <TextInput
         style={style.input}
         placeholder="Digite seu email"
@@ -136,7 +137,7 @@ const style = StyleSheet.create({
   },
 
   title: {
-    fontSize: 48,
+    fontSize: 54,
     color: "#D96800", //#f92e6a //#f92eca
     marginBottom: 10,
     fontWeight: "bold",
@@ -176,6 +177,7 @@ const style = StyleSheet.create({
 
   textButtonLogin: {
     color: "#fff",
+    fontSize: 22
   },
 
   contentAlert: {

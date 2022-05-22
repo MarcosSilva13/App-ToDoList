@@ -9,6 +9,7 @@ import {
   Platform
 } from "react-native";
 
+import IconUser from "../Icons/IconUser.js";
 import firebase from "../config/firebaseconfig.js";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -41,7 +42,9 @@ export default function Cadastro({ navigation }) {
       behavior={Platform.OS === "ios" ? "padding" : ""}
       style={style.container}
     >
-    <Text style={style.title}>Cadastro de Usuário</Text>
+    <IconUser/>
+    <Text style={style.title}>Crie sua conta</Text>
+    
       <TextInput
         style={style.input}
         placeholder="Digite um email"
@@ -111,11 +114,11 @@ const style = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: 50,
+        paddingTop: 30,
     },
     
     title: {
-        fontSize: 38,
+        fontSize: 48,
         color: "#D96800", //#f92e6a //#f92eca
         marginBottom: 10,
         fontWeight: "bold",
@@ -155,6 +158,7 @@ const style = StyleSheet.create({
     
     textButtonRegister: {
         color: "#fff",
+        fontSize: 22
     },
     
     contentAlert: {
