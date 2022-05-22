@@ -4,7 +4,8 @@ import {
     View, 
     Text, 
     TextInput, 
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from "react-native";
 
 import IconEditTask from "../Icons/IconEditTask.js";
@@ -16,6 +17,10 @@ export default function Editar({navigation, route}){
     const database = firebase.firestore()
    
     function editTask(description, id){
+      if(descriptionEdit == ""){
+        Alert.alert("Atenção", "Não pode enviar uma tarefa vazia!");
+        return;
+      }
       database.collection(route.params.idUser).doc(id).update({
         description: description
       })

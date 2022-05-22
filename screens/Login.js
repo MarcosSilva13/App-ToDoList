@@ -26,11 +26,11 @@ export default function Login({ navigation }) {
 
       let user = userCredential.user;
       
-      navigation.navigate("Tarefa", {idUser: user.uid, emailUser: user.email})
+      navigation.navigate("Tarefa", {idUser: user.uid})
 
       setEmail("");
       setSenha("");
-
+      setErrorLogin(false)
     })
     .catch((error) => {
       setErrorLogin(true)
@@ -122,7 +122,7 @@ export default function Login({ navigation }) {
 
       <Text style={style.textAbout}>Sobre</Text>
 
-      <View style={{ height: 100 }} />
+      <View style={{ height: 20 }} />
     </KeyboardAvoidingView>
   );
 }
