@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome } from '@expo/vector-icons';
 import { useEffect, useState } from "react";
 
 import firebase from "../config/firebaseconfig.js";
@@ -118,9 +119,23 @@ export default function Login({ navigation }) {
             size={30}
             color="#D96800"
           />
+
+          <Text style={style.textAbout}>Sobre</Text>
         </TouchableOpacity>
 
-      <Text style={style.textAbout}>Sobre</Text>
+      
+
+      <TouchableOpacity
+        style={style.buttonFaq}
+      >
+        <FontAwesome 
+          name="question-circle" 
+          size={30} 
+          color="#D95800" 
+        />
+        <Text style={style.textFaq}>FAQ</Text>
+
+      </TouchableOpacity>
 
       <View style={{ height: 20 }} />
     </KeyboardAvoidingView>
@@ -208,7 +223,7 @@ const style = StyleSheet.create({
     width: 120,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#1c6cce",
+    //backgroundColor: "#1c6cce",
     borderRadius: 15,
     //margin: 10,
     //marginLeft: 10
@@ -217,13 +232,30 @@ const style = StyleSheet.create({
   buttonAbout: {
     width: 30,
     height: 30,
-    justifyContent: "center",
+    top: 10,
+    left: -50,
+    //justifyContent: "center",
     alignItems: "center",
     //backgroundColor: "#1c6cce",
     borderRadius: 50,
     marginTop: 20
   },
   textAbout: {
+    marginTop: 1,
+    color: "#D96800",
+  },
+  buttonFaq: {
+    width: 30,
+    height: 30,
+    top: -39,
+    left: 50,
+    //justifyContent: "center",
+    alignItems: "center",
+    //backgroundColor: "#1c6cce",
+    borderRadius: 50,
+    marginTop: 20,
+  },
+  textFaq: {
     marginTop: 1,
     color: "#D96800",
   }
