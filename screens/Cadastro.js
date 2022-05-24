@@ -28,6 +28,7 @@ export default function Cadastro({ navigation }) {
         
         setEmail("");
         setSenha("");
+        setErrorRegister(false);
 
       })
       .catch((error) => {
