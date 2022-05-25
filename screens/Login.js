@@ -123,19 +123,17 @@ export default function Login({ navigation }) {
           <Text style={style.textAbout}>Sobre</Text>
         </TouchableOpacity>
 
-      
+        <TouchableOpacity
+          style={style.buttonFaq}
+        >
+          <FontAwesome 
+            name="question-circle" 
+            size={30} 
+            color="#D95800" 
+          />
+          <Text style={style.textFaq}>FAQ</Text>
 
-      <TouchableOpacity
-        style={style.buttonFaq}
-      >
-        <FontAwesome 
-          name="question-circle" 
-          size={30} 
-          color="#D95800" 
-        />
-        <Text style={style.textFaq}>FAQ</Text>
-
-      </TouchableOpacity>
+        </TouchableOpacity>
 
       <View style={{ height: 20 }} />
     </KeyboardAvoidingView>
@@ -230,31 +228,32 @@ const style = StyleSheet.create({
   },
 
   buttonAbout: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     top: 10,
     left: -50,
-    //justifyContent: "center",
     alignItems: "center",
     //backgroundColor: "#1c6cce",
     borderRadius: 50,
     marginTop: 20
   },
+
   textAbout: {
     marginTop: 1,
     color: "#D96800",
   },
+
   buttonFaq: {
-    width: 30,
-    height: 30,
-    top: -39,
+    width: 40,
+    height: 40,
+    top: -49,
     left: 50,
-    //justifyContent: "center",
     alignItems: "center",
     //backgroundColor: "#1c6cce",
     borderRadius: 50,
     marginTop: 20,
   },
+  
   textFaq: {
     marginTop: 1,
     color: "#D96800",
