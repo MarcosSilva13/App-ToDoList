@@ -6,6 +6,7 @@ import Tarefa from './screens/Tarefa';
 import Sobre from './screens/Sobre';
 import Cadastro from './screens/Cadastro';
 import Editar from './screens/Editar';
+import Faq from './screens/Faq';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,11 @@ export default function App() {
           name="Sobre"
           component={Sobre}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Faq"
+          component={Faq}
+          options={{headerShown: true, title: ""}}
         />
       </Stack.Navigator>
     </NavigationContainer>

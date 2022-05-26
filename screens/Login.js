@@ -125,6 +125,7 @@ export default function Login({ navigation }) {
 
         <TouchableOpacity
           style={style.buttonFaq}
+          onPress={() => navigation.navigate("Faq")}
         >
           <FontAwesome 
             name="question-circle" 

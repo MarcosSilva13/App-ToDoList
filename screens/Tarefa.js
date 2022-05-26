@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 10,
     borderRadius: 4,
-    backgroundColor: "#D98800",
+    backgroundColor: "#D97800",
 
     display: "flex",
     flexDirection: "row",
