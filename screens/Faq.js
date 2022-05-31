@@ -57,12 +57,11 @@ const DATA = [
       padding: 2,  
       fontSize: 32,
       fontWeight: "bold",
-      backgroundColor: "#000",
+      backgroundColor: "#444",
       color: "#fff",
     },
     title: {
       fontSize: 24,
-      
     }
   });
   

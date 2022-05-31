@@ -5,7 +5,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 export default function Sobre({ navigation }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.textTitle}>Aplicativo desenvolvido por: Marcos</Text>
+            <Text style={styles.textTitle}>App de tarefas</Text>
+            <Text style={styles.textTitle}>Desenvolvido por: Marcos</Text>
             <TouchableOpacity
                 style={styles.buttonBack}
                 onPress={() => navigation.navigate("Login")}
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     textTitle: {
-        fontSize: 32,
+        fontSize: 24,
         color: "#000",
         justifyContent: "center",
         marginLeft: 20,
