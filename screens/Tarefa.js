@@ -62,7 +62,7 @@ export default function Tarefa({ navigation, route }) {
   async function addTask() {
     if (newTask == "") {
       Alert.alert("Atenção", "Não pode adicionar tarefa vazia!");
-      alert("Não pode adicionar tarefa vazia!");
+      //alert("Não pode adicionar tarefa vazia!");
       return;
     }
 
