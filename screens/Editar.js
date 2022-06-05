@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
       fontSize: 40,
       fontWeight: "bold",
       marginLeft: 0,
-      color: "#D96800",
+      color: "#D97800",
     },
     input:{
      width: "100%",
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
      padding: 5,
      height: 50,
      borderBottomWidth: 1,
-     borderBottomColor: "#D95800",
+     borderBottomColor: "#D96800",
      marginLeft: 0,
      fontSize: 16
     },
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
      //position: ,
      bottom: -60,
      left: 128,
-     backgroundColor: "#D95800",
+     backgroundColor: "#D96800",
      borderRadius: 50,
      justifyContent: "center",
      alignItems: "center"

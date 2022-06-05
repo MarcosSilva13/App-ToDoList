@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     logo: {
       width: 62,
       height: 52,
-      tintColor: "#D94800",
+      tintColor: "#D96800",
     },
   });

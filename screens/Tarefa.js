@@ -186,7 +186,7 @@ export default function Tarefa({ navigation, route }) {
                   <MaterialIcons
                     name="logout"
                     size={25}
-                    color="#D95800"
+                    color="#D96800"
                   />
               </TouchableOpacity>
           </View>
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     width: 40,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D95800",
+    backgroundColor: "#D96800",
     borderRadius: 4,
     marginLeft: 10,
   },

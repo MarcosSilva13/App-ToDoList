@@ -130,13 +130,13 @@ export default function Login({ navigation }) {
           <FontAwesome 
             name="question-circle" 
             size={30} 
-            color="#D95800" 
+            color="#D96800" 
           />
           <Text style={style.textFaq}>FAQ</Text>
 
         </TouchableOpacity>
 
-      <View style={{ height: 20 }} />
+      <View style={{ height: 5 }} />
     </KeyboardAvoidingView>
   );
 }
@@ -152,7 +152,7 @@ const style = StyleSheet.create({
 
   title: {
     fontSize: 54,
-    color: "#D96800", //#f92e6a //#f92eca
+    color: "#D96800",
     marginBottom: 10,
     fontWeight: "bold",
   },
@@ -222,10 +222,7 @@ const style = StyleSheet.create({
     width: 120,
     justifyContent: "center",
     alignItems: "center",
-    //backgroundColor: "#1c6cce",
     borderRadius: 15,
-    //margin: 10,
-    //marginLeft: 10
   },
 
   buttonAbout: {
@@ -234,7 +231,6 @@ const style = StyleSheet.create({
     top: 10,
     left: -50,
     alignItems: "center",
-    //backgroundColor: "#1c6cce",
     borderRadius: 50,
     marginTop: 20
   },
@@ -250,7 +246,6 @@ const style = StyleSheet.create({
     top: -49,
     left: 50,
     alignItems: "center",
-    //backgroundColor: "#1c6cce",
     borderRadius: 50,
     marginTop: 20,
   },
