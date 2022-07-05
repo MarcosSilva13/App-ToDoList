@@ -51,55 +51,54 @@ export default function Editar({navigation, route}){
       )
 }
 
-
 const styles = StyleSheet.create({
-    container: { 
-      flex:1,
-      backgroundColor:'#fff',
-      paddingHorizontal: 5,
-      paddingVertical: 20,
-    },
-    header: {
-        padding: 2,
-        marginTop: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        borderBottomWidth: 1,
-        borderBottomColor: "#000",  
-    },
-    label:{
-      width: "90%",
-      marginTop: 50,
-      fontSize: 40,
-      fontWeight: "bold",
-      marginLeft: 0,
-      color: "#D97800",
-    },
-    input:{
-     width: "100%",
-     marginTop: 10,
-     padding: 5,
-     height: 50,
-     borderBottomWidth: 1,
-     borderBottomColor: "#D96800",
-     marginLeft: 0,
-     fontSize: 16
-    },
-    buttonNewTask:{
-     width: 100,
-     height: 50,
-     //position: ,
-     bottom: -60,
-     left: 128,
-     backgroundColor: "#D96800",
-     borderRadius: 50,
-     justifyContent: "center",
-     alignItems: "center"
-    },
-    iconButton:{
-     color: "#ffffff",
-     fontSize: 20,
-     fontWeight: "bold",
-    }
-   });
+  container: { 
+    flex:1,
+    backgroundColor:'#fff',
+    paddingHorizontal: 5,
+    paddingVertical: 20,
+  },
+  header: {
+      padding: 2,
+      marginTop: 10,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      borderBottomWidth: 1,
+      borderBottomColor: "#000",  
+  },
+  label:{
+    width: "90%",
+    marginTop: 50,
+    fontSize: 40,
+    fontWeight: "bold",
+    marginLeft: 0,
+    color: "#D97800",
+  },
+  input:{
+    width: "100%",
+    marginTop: 10,
+    padding: 5,
+    height: 50,
+    borderBottomWidth: 1,
+    borderBottomColor: "#D96800",
+    marginLeft: 0,
+    fontSize: 16
+  },
+  buttonNewTask:{
+    width: 100,
+    height: 50,
+    //position: ,
+    bottom: -60,
+    left: 128,
+    backgroundColor: "#D96800",
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  iconButton:{
+    color: "#ffffff",
+    fontSize: 20,
+    fontWeight: "bold",
+  }
+});

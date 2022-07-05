@@ -6,7 +6,6 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  Alert,
 } from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -84,7 +83,7 @@ export default function Login({ navigation }) {
       )}
 
       {email === "" || senha === "" ? (
-        <TouchableOpacity //botão de login
+        <TouchableOpacity
           disabled={true}
           style={style.buttonLoginDisable}
         >

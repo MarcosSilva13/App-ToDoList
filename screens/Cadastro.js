@@ -76,7 +76,7 @@ export default function Cadastro({ navigation }) {
       )}
 
       {email === "" || senha === "" ? (
-        <TouchableOpacity //botão de Cadastrar
+        <TouchableOpacity
           disabled={true}
           style={style.buttonRegisterDisable}
         >
@@ -110,78 +110,78 @@ export default function Cadastro({ navigation }) {
 }
 
 const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-        paddingTop: 30,
-    },
-    
-    title: {
-        fontSize: 48,
-        color: "#D96800", //#f92e6a //#f92eca
-        marginBottom: 10,
-        fontWeight: "bold",
-    },
-    
-    input: {
-        width: 300,
-        marginTop: 10,
-        padding: 10,
-        height: 50,
-        borderBottomWidth: 1,
-        borderBottomColor: "#D96800",
-        marginLeft: "auto",
-        marginRight: "auto",
-        color: "#000",
-    },
-    
-    buttonRegister: {
-        width: 200,
-        height: 50,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#D96800",
-        borderRadius: 50,
-        marginTop: 30,
-    },
-    
-    buttonRegisterDisable: {
-        width: 200,
-        height: 50,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#bdbdbd",
-        borderRadius: 50,
-        marginTop: 30,
-    },
-    
-    textButtonRegister: {
-        color: "#fff",
-        fontSize: 22
-    },
-    
-    contentAlert: {
-        marginTop: 20,
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    
-    warningAlert: {
-        paddingLeft: 10,
-        color: "#bdbdbd",
-        fontSize: 16,
-    },
-    
-    login: {
-        marginTop: 20,
-        color: "#4d5156",
-    },
-    
-    linkLogin: {
-        color: "#1877f2",
-        fontSize: 16,
-    },
+  container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+      paddingTop: 30,
+  },
+  
+  title: {
+      fontSize: 48,
+      color: "#D96800",
+      marginBottom: 10,
+      fontWeight: "bold",
+  },
+  
+  input: {
+      width: 300,
+      marginTop: 10,
+      padding: 10,
+      height: 50,
+      borderBottomWidth: 1,
+      borderBottomColor: "#D96800",
+      marginLeft: "auto",
+      marginRight: "auto",
+      color: "#000",
+  },
+  
+  buttonRegister: {
+      width: 200,
+      height: 50,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#D96800",
+      borderRadius: 50,
+      marginTop: 30,
+  },
+  
+  buttonRegisterDisable: {
+      width: 200,
+      height: 50,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#bdbdbd",
+      borderRadius: 50,
+      marginTop: 30,
+  },
+  
+  textButtonRegister: {
+      color: "#fff",
+      fontSize: 22
+  },
+  
+  contentAlert: {
+      marginTop: 20,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+  },
+  
+  warningAlert: {
+      paddingLeft: 10,
+      color: "#bdbdbd",
+      fontSize: 16,
+  },
+  
+  login: {
+      marginTop: 20,
+      color: "#4d5156",
+  },
+  
+  linkLogin: {
+      color: "#1877f2",
+      fontSize: 16,
+  },
 });

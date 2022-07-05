@@ -26,19 +26,6 @@ export default function Tarefa({ navigation, route }) {
   const user = firebase.auth().currentUser;
   const email = user.email;
 
-    /*if (user !== null) {
-      // The user object has basic properties such as display name, email, etc.
-      const displayName = user.displayName;
-      const email = user.email;
-      const photoURL = user.photoURL;
-      const emailVerified = user.emailVerified;
-
-      // The user's ID, unique to the Firebase project. Do NOT use
-      // this value to authenticate with your backend server, if
-      // you have one. Use User.getIdToken() instead.
-      const uid = user.uid;
-}*/
-
     function logout(){
       firebase.auth().signOut().then(() => {
         navigation.navigate("Login");
@@ -62,7 +49,6 @@ export default function Tarefa({ navigation, route }) {
   async function addTask() {
     if (newTask == "") {
       Alert.alert("Atenção", "Não pode adicionar tarefa vazia!");
-      //alert("Não pode adicionar tarefa vazia!");
       return;
     }
 
